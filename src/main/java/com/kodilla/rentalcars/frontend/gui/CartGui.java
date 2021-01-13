@@ -1,6 +1,7 @@
 package com.kodilla.rentalcars.frontend.gui;
 
 import com.kodilla.rentalcars.frontend.client.CartClient;
+import com.kodilla.rentalcars.frontend.domain.Car;
 import com.kodilla.rentalcars.frontend.domain.Cart;
 import com.kodilla.rentalcars.frontend.form.CartForm;
 import com.vaadin.flow.component.button.Button;
@@ -28,13 +29,13 @@ public class CartGui extends VerticalLayout {
             grid.asSingleSelect().clear();
             form.setCart(new Cart());
         });
-        HorizontalLayout toolbar = new HorizontalLayout(addNewCart);
+     //   HorizontalLayout toolbar = new HorizontalLayout(addNewCart);
 
-        HorizontalLayout mainContent = new HorizontalLayout(grid, form);
+        VerticalLayout mainContent = new VerticalLayout(grid, form);
         mainContent.setSizeFull();
         grid.setSizeFull();
 
-        add(toolbar, mainContent);
+        add(mainContent);
         form.setCart(null);
         setSizeFull();
         refresh(cartClient);

@@ -38,7 +38,6 @@ public class CarClient {
                 .queryParam("fields", "id, description ,name, dailyPrice").build().encode().toUri();
 
         Car[] response = restTemplate.getForObject(url, Car[].class);
-        System.out.println(response.toString());
         return Arrays.asList(Optional.ofNullable(response).orElse(new Car[0]));
 
     }

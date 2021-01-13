@@ -1,5 +1,6 @@
 package com.kodilla.rentalcars.frontend.client;
 
+import com.kodilla.rentalcars.frontend.domain.Car;
 import com.kodilla.rentalcars.frontend.domain.Cart;
 import com.kodilla.rentalcars.frontend.domain.User;
 import org.springframework.http.*;
@@ -25,13 +26,35 @@ public class CartClient {
 
     RestTemplate restTemplate = new RestTemplate();
 
-    public Cart getCartFromApi(int id) {
+    public Cart getCartFromApi(Long id) {
         ResponseEntity<Cart> exchange = restTemplate.exchange(
                 "http://localhost:8081/v1/carts/" + id,
                 HttpMethod.GET,
                 HttpEntity.EMPTY,
                 Cart.class);
         return exchange.getBody();
+    }
+
+    public List<Car> getCarsFromCart(Long id){
+        List<Car> cars = getCartFromApi(id).getCars();
+        return cars;
+    }
+
+    public Cart addCarToCart(Object object, Long id, int duration){
+        Cart cart = getCartFromApi(id);
+        Car car = (Car) object;
+        cart.getCars().add(car);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<Car> request = new HttpEntity<>(car, headers);
+        URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8081/v1/carts/addCar")
+                .queryParam("id", id)
+                .queryParam("duration", duration).build().encode().toUri();
+        restTemplate.postForObject(url, request, Cart.class);
+
+        return cart;
     }
 
     public List<Cart> getCartsFromApi() {
@@ -61,4 +84,5 @@ public class CartClient {
         restTemplate.postForObject(url, request, Cart.class);
         return cart;
     }
+
 }
