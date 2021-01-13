@@ -3,9 +3,7 @@ package com.kodilla.rentalcars.frontend.domain;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -18,10 +16,9 @@ import java.util.List;
         "user",
         "sum",
 })
-@NoArgsConstructor
 public class Order {
     @JsonProperty("id")
-    private String id;
+    private Long id;
     @JsonProperty("cart")
     private Cart cart;
     @JsonProperty("cars")
@@ -33,7 +30,7 @@ public class Order {
 
     public Order() {
     }
-    public Order(String id, Cart cart, List<Car> cars, User user, BigDecimal sum) {
+    public Order(Long id, Cart cart, List<Car> cars, User user, BigDecimal sum) {
         this.id = id;
         this.cart = cart;
         this.cars = cars;
@@ -41,7 +38,7 @@ public class Order {
         this.sum = sum;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -61,7 +58,7 @@ public class Order {
         return sum;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

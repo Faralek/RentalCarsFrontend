@@ -1,15 +1,11 @@
 package com.kodilla.rentalcars.frontend.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import lombok.NoArgsConstructor;
-
 import java.math.BigDecimal;
-
 import java.util.List;
-import java.util.Optional;
-
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -19,7 +15,6 @@ import java.util.Optional;
         "orders",
         "user",
 })
-@NoArgsConstructor
 public class Cart {
 
     @JsonProperty("id")
@@ -31,6 +26,7 @@ public class Cart {
     @JsonProperty("orders")
     private List<Order> orders;
     @JsonProperty("user")
+    @JsonBackReference
     private User user;
 
     public Cart() {

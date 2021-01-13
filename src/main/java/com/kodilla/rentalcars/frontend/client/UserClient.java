@@ -1,6 +1,8 @@
 package com.kodilla.rentalcars.frontend.client;
 
+import com.kodilla.rentalcars.frontend.domain.Cart;
 import com.kodilla.rentalcars.frontend.domain.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -14,6 +16,8 @@ import java.util.Optional;
 @Service
 public class UserClient {
     private static UserClient userClient;
+
+    private final CartClient cartClient = new CartClient();
 
     public static UserClient getInstance() {
         if (userClient == null) {
@@ -52,6 +56,10 @@ public class UserClient {
 
     public void addUser(User user) {
 
+        Cart cart = new Cart();
+
+        user.setCart(cart);
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -59,7 +67,8 @@ public class UserClient {
 
         URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8081/v1/users/")
                 .queryParam("name", user.getUsername())
-                .queryParam("password", user.getPassword()).build().encode().toUri();
+                .queryParam("password", user.getPassword())
+                .queryParam("cart", user.getCart()).build().encode().toUri();
 
         restTemplate.postForObject(url, request, User.class);
     }

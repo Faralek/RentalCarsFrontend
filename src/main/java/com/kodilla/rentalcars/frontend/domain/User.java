@@ -1,10 +1,10 @@
 package com.kodilla.rentalcars.frontend.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import javax.persistence.Entity;
 import java.util.List;
 
 
@@ -24,6 +24,7 @@ public class User {
     @JsonProperty("password")
     private String password;
     @JsonProperty("cart")
+    @JsonManagedReference
     private Cart cart;
     @JsonProperty("orders")
     private List<Order> orders;

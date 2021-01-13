@@ -25,12 +25,12 @@ public class CartClient {
 
     RestTemplate restTemplate = new RestTemplate();
 
-    public User getCartFromApi(int id) {
-        ResponseEntity<User> exchange = restTemplate.exchange(
+    public Cart getCartFromApi(int id) {
+        ResponseEntity<Cart> exchange = restTemplate.exchange(
                 "http://localhost:8081/v1/carts/" + id,
                 HttpMethod.GET,
                 HttpEntity.EMPTY,
-                User.class);
+                Cart.class);
         return exchange.getBody();
     }
 
@@ -51,15 +51,14 @@ public class CartClient {
                 User.class);
     }
 
-    public void addCart(Cart cart) {
+    public Cart addCart(Cart cart) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<Cart> request = new HttpEntity<>(cart, headers);
-
         URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8081/v1/carts/").build().encode().toUri();
-
         restTemplate.postForObject(url, request, Cart.class);
+        return cart;
     }
 }

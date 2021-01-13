@@ -1,10 +1,7 @@
 package com.kodilla.rentalcars.frontend.gui;
 
-import com.kodilla.rentalcars.frontend.client.CarClient;
 import com.kodilla.rentalcars.frontend.client.UserClient;
-import com.kodilla.rentalcars.frontend.domain.Car;
 import com.kodilla.rentalcars.frontend.domain.User;
-import com.kodilla.rentalcars.frontend.form.CarForm;
 import com.kodilla.rentalcars.frontend.form.UserForm;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;

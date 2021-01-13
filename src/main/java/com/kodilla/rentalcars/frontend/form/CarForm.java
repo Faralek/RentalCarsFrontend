@@ -4,7 +4,6 @@ import com.kodilla.rentalcars.frontend.client.CarClient;
 import com.kodilla.rentalcars.frontend.domain.Car;
 import com.kodilla.rentalcars.frontend.domain.Cart;
 import com.kodilla.rentalcars.frontend.domain.Order;
-import com.kodilla.rentalcars.frontend.domain.User;
 import com.kodilla.rentalcars.frontend.gui.CarGui;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
