@@ -57,8 +57,9 @@ public class UserClient {
     public void addUser(User user) {
 
         Cart cart = new Cart();
-
+        cart.setUser(user);
         user.setCart(cart);
+
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
